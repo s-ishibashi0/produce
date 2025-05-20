@@ -6,50 +6,31 @@ import java.sql.ResultSet;
 
 import bean.Teacher;
 
-public class TeacherDAO extends DAO {
+public class TeacherDAO extends DAO{
+	public Teacher search(int id, String password)
+		throws Exception {
+		Teacher teacher=null;
 
-    // 1件取得
-    public Teacher get(String id) throws Exception {
-        Teacher teacher = null;
-        String sql = "SELECT id, name, password FROM teacher WHERE id = ?";
+		Connection con=getConnection();
 
-        try (Connection con = getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+		PreparedStatement st;
+		st=con.prepareStatement(
+				"select * from teacher where login=? and password=?");
+		st.setInt(1, id);
+		st.setString(2, password);
+		ResultSet rs=st.executeQuery();
 
-            ps.setString(1, id);
-            ResultSet rs = ps.executeQuery();
+		if (rs.next()) {
+			teacher=new Teacher();
+			teacher.setID(rs.getInt("id"));
+//			下の文いらないかもしれないからコメントアウトした
+//			teacher.setLogin(rs.getString("login"));
+			teacher.setPassword(rs.getString("password"));
+		}
 
-            if (rs.next()) {
-                teacher = new Teacher();
-                teacher.setId(rs.getString("id"));
-                teacher.setName(rs.getString("name"));
-                teacher.setPassword(rs.getString("password"));
-            }
-        }
-
-        return teacher;
-    }
-
-    // ログイン認証
-    public Teacher login(String id, String password) throws Exception {
-        Teacher teacher = null;
-        String sql = "SELECT id, name, password FROM teacher WHERE id = ? AND password = ?";
-
-        try (Connection con = getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-
-            ps.setString(1, id);
-            ps.setString(2, password);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                teacher = new Teacher();
-                teacher.setId(rs.getString("id"));
-                teacher.setName(rs.getString("name"));
-                teacher.setPassword(rs.getString("password"));
-            }
-        }
-
-        return teacher;
-    }
+		rs.close();
+		st.close();
+		con.close();
+		return teacher;
+	}
 }

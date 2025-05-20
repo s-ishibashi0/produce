@@ -1,43 +1,28 @@
 package bean;
 
-import java.io.Serializable;
+public class Teacher implements java.io.Serializable{
 
-public class Teacher extends User implements Serializable {
-	private String id;
+	private int id;
 	private String password;
-	private String name;
-	private School school;
+	private String login;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public String getPassword() {
 		return password;
 	}
+	public String getLogin() {
+		return login;
+	}
 
+	public void setID(int id) {
+		this.id=id;
+	}
+	public void setLogin(String login) {
+		this.login=login;
+	}
 	public void setPassword(String password) {
-		this.password = password;
+		this.password=password;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public School getSchool() {
-		return school;
-	}
-
-	public void setSchool(School school) {
-		this.school = school;
-	}
-
 }
