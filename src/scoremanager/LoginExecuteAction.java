@@ -27,11 +27,11 @@ public class LoginExecuteAction implements Action {
             } else {
                 // 認証失敗 → エラーメッセージ設定してエラーページへ
                 req.setAttribute("error", "ログインIDまたはパスワードが違います。");
-                return "/error.jsp";
+                return "/scoremanager/main/error.jsp";  // ← ここを修正
             }
         } catch (NumberFormatException e) {
             req.setAttribute("error", "IDの形式が不正です。");
-            return "/error.jsp";
+            return "/scoremanager/main/error.jsp";  // ← ここを修正
         }
     }
 }
