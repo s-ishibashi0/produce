@@ -23,7 +23,7 @@ public class LoginExecuteAction implements Action {
                 // 認証成功 → セッションに保存してホームへ
                 HttpSession session = req.getSession();
                 session.setAttribute("teacher", teacher);
-                return "/index.jsp";
+                return "main/menu.jsp";
             } else {
                 // 認証失敗 → エラーメッセージ設定してエラーページへ
                 req.setAttribute("error", "ログインIDまたはパスワードが違います。");

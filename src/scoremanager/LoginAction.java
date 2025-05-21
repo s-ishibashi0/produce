@@ -8,6 +8,6 @@ import tool.Action;
 public class LoginAction implements Action {
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
         // ログイン画面へ遷移するだけ
-        return "../Login.jsp";
+        return "scoremanager/Login.jsp";
     }
 }

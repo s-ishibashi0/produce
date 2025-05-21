@@ -19,9 +19,9 @@ public class Teacher implements java.io.Serializable{
 	public void setID(int id) {
 		this.id=id;
 	}
-	public void setLogin(String login) {
+/*	public void setLogin(String login) {
 		this.login=login;
-	}
+	}*/
 	public void setPassword(String password) {
 		this.password=password;
 	}
