@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 public class H2Init {
     // H2データベースのTCPモード接続
-    private static final String JDBC_URL = "jdbc:h2:~/team";
+    private static final String JDBC_URL = "jdbc:h2:tcp://localhost:9092/~/team";
     private static final String USER = "sa";
     private static final String PASSWORD = "";
 
