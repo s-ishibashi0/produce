@@ -11,8 +11,8 @@ import tool.Action;
 public class LoginExecuteAction implements Action {
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
         try {
-            // フォームから送られたパラメータを取得
-            int id = Integer.parseInt(req.getParameter("id"));
+            // フォームから送られたパラメータを取得（IDは文字列として扱う）
+            String id = req.getParameter("id");
             String password = req.getParameter("password");
 
             // DAOで認証チェック
@@ -27,11 +27,12 @@ public class LoginExecuteAction implements Action {
             } else {
                 // 認証失敗 → エラーメッセージ設定してエラーページへ
                 req.setAttribute("error", "ログインIDまたはパスワードが違います。");
-                return "/scoremanager/main/error.jsp";  // ← ここを修正
+                return "/scoremanager/main/error.jsp";
             }
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
+            // ここでNumberFormatExceptionに限定せず広く例外をキャッチしても良いですが
             req.setAttribute("error", "IDの形式が不正です。");
-            return "/scoremanager/main/error.jsp";  // ← ここを修正
+            return "/scoremanager/main/error.jsp";
         }
     }
 }

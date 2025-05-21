@@ -1,28 +1,28 @@
 package bean;
 
-public class Teacher implements java.io.Serializable{
+public class Teacher implements java.io.Serializable {
 
-	private int id;
-	private String password;
-	private String login;
+    private String id;        // int → String に変更
+    private String password;
+    private String login;
 
-	public int getId() {
-		return id;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public String getLogin() {
-		return login;
-	}
+    public String getId() {
+        return id;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public String getLogin() {
+        return login;
+    }
 
-	public void setID(int id) {
-		this.id=id;
-	}
-	public void setLogin(String login) {
-		this.login=login;
-	}
-	public void setPassword(String password) {
-		this.password=password;
-	}
+    public void setId(String id) {  // setID → setId で命名統一
+        this.id = id;
+    }
+    public void setLogin(String login) {
+        this.login = login;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
